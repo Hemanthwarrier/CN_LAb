@@ -1,16 +1,16 @@
-import socket                  
+import socket
 
-port = 60000                    
-s = socket.socket()             
-host = socket.gethostname()     
-s.bind((host, port))           
-s.listen(5)                     
+port = 60000
+s = socket.socket()
+host = "127.0.0.1"
+s.bind((host, port))
+s.listen(5)
 
-print 'Server listening....'
+print ('Server listening....')
 
 while True:
-    conn, addr = s.accept()    
-    print 'Got connection from', addr
+    conn, addr = s.accept()
+    print ('Got connection from', addr)
     data = conn.recv(1024)
     print('Server received', repr(data))
 
@@ -26,4 +26,3 @@ while True:
     print('Done sending')
     conn.send('Thank you for connecting')
     conn.close()
-

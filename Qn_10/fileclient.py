@@ -1,21 +1,21 @@
-import socket                  
+import socket
 
-s = socket.socket()            
-host = socket.gethostname()     
-port = 60000                    
+s = socket.socket()
+host = "127.0.0.1"
+port = 60000
 
 s.connect((host, port))
-s.send("Hello server!")
+# s.send("Hello server!")
 
 with open('received_file', 'wb') as f:
-    print 'file opened'
+    print ('file opened')
     while True:
         print('receiving data...')
         data = s.recv(1024)
         print('data=%s', (data))
         if not data:
             break
-       
+
         f.write(data)
 
 f.close()
