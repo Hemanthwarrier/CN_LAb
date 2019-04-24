@@ -5,20 +5,21 @@ host = socket.gethostname()
 port = 60000
 
 s.connect((host, port))
-s.send((("Hello server!").encode()))
+s.send(input("\nEnter filename: ").encode())
 
-with open('received_file', 'wb') as f:
-    print ('file opened')
-    while True:
-        print('receiving data...')
-        data = s.recv(1024)
-        print(str(data))
-        if not data:
-            break
+status = s.recv(1024).decode()
+if status == "found":
+    print("File found")
+    with open('received_file', 'wb') as f:
+        while True:
+            data = s.recv(1024)
+            if not data:
+                break
+            f.write(data)
+            print("Content: ",data)
+        f.close()
+    print("Recieved file")
+else:
+    print("File not found")
 
-        f.write(data)
-
-f.close()
-print('Successfully get the file')
 s.close()
-print('connection closed')
