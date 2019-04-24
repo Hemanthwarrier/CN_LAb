@@ -2,7 +2,7 @@ import socket
 
 port = 60000
 s = socket.socket()
-host = "127.0.0.1"
+host = socket.gethostname()
 s.bind((host, port))
 s.listen(5)
 
