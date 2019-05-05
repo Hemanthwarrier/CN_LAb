@@ -1,8 +1,8 @@
-import socket
+import socket                  
 
-s = socket.socket()
-host = socket.gethostname()
-port = 60000
+s = socket.socket()            
+host = socket.gethostname()     
+port = 60000                    
 
 s.connect((host, port))
 s.send(input("\nEnter filename: ").encode())
@@ -16,7 +16,6 @@ if status == "found":
             if not data:
                 break
             f.write(data)
-            print("Content: ",data)
         f.close()
     print("Recieved file")
 else:
